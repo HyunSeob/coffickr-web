@@ -1,3 +1,3 @@
 module.exports = {
-  serverUrl: 'http://localhost:4000'
+  serverUrl: 'http://coffickr.cloudapp.net:4000'
 };

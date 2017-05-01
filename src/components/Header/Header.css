@@ -1,0 +1,47 @@
+@import '../../../node_modules/open-color/open-color.css';
+@import '../../constants.css';
+
+:root {
+  --navbarHeight: 64px;
+}
+
+.Navbar {
+  height: var(--navbarHeight);
+  background: linear-gradient(to right, var(--oc-indigo-9), var(--oc-indigo-7));
+  padding: 0 var(--basicOffset);
+
+  & ul {
+    list-style: none;
+    margin: 0;
+
+    & li {
+      display: inline-block;
+      margin: 0 0 0 var(--basicOffset);
+    }
+  }
+}
+
+.Navbar__Left {
+  float: left;
+}
+
+.Navbar__Right {
+  float: right;
+}
+
+.Navbar__Link {
+  height: var(--navbarHeight);
+  line-height: var(--navbarHeight);
+  display: inline-block;
+  color: var(--oc-gray-1);
+  font-size: 18px;
+  &:focus, &:hover {
+    color: var(--oc-gray-1);
+  }
+}
+
+.Navbar__Logo {
+  font-size: 16px;
+  padding: 2px 6px;
+  border: 1px solid var(--oc-gray-1);
+}

@@ -1,0 +1,44 @@
+@import '../../../node_modules/open-color/open-color.css';
+@import '../../constants.css';
+
+.PlaceCard {
+  position: relative;
+  height: 180px;
+  color: var(--oc-gray-1);
+  background-size: cover;
+  background-position: 50% 50%;
+  &:hover {
+    color: var(--oc-gray-1);
+  }
+}
+
+.PlaceCard__Background {
+  @apply --FullSizing;
+  background-color: var(--oc-gray-8);
+  opacity: 0.5;
+}
+
+.PlaceCard__Rank {
+  position: absolute;
+  top: var(--basicOffset);
+  left: var(--basicOffset);
+  font-size: 24px;
+  text-decoration: underline;
+}
+
+.PlaceCard__Center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.PlaceCard__Name {
+  display: block;
+  font-size: 18px;
+}
+
+.PlaceCard__Score {
+  display: block;
+  font-size: 14px;
+}

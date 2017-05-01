@@ -1,0 +1,58 @@
+@import '../../constants.css';
+@import '../../../node_modules/open-color/open-color.css';
+
+.Place {
+
+}
+
+.Place__Cover {
+  position: relative;
+  width: 100%;
+  height: 360px;
+  color: var(--oc-gray-1);
+  background-size: cover;
+  background-position: 50% 50%;
+}
+
+.Place__Cover__Bottom {
+  position: absolute;
+  bottom: var(--basicOffset);
+  left: var(--basicOffset);
+  text-align: left;
+}
+
+.Place__Cover__Top {
+  position: absolute;
+  top: var(--basicOffset);
+  left: var(--basicOffset);
+}
+
+.Place__Cover__Background {
+  @apply --FullSizing;
+  background-color: var(--oc-gray-8);
+  opacity: 0.5;
+}
+
+.Place__Rank {
+  font-size: 18px;
+}
+
+.Place__Name {
+  margin: 0;
+}
+
+.Place__Detail {
+  list-style: none;
+  text-align: left;
+  margin: var(--basicOffset);
+}
+
+.Place__Detail__Item {
+  & strong {
+    display: block;
+  }
+
+  & span {
+    display: block;
+  }
+}

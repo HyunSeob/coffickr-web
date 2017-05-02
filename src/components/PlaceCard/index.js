@@ -11,7 +11,7 @@ const PlaceCard = ({ to, image, rank, name, score }) => (
     <span className="PlaceCard__Rank">{ rank }</span>
     <div className="PlaceCard__Center">
       <span className="PlaceCard__Name">{ name }</span>
-      <span className="PlaceCard__Score">{ score }</span>
+      <span className="PlaceCard__Score">{ score }점</span>
     </div>
   </Link>
 );

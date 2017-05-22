@@ -30,7 +30,7 @@ class Comment extends Component {
     };
 
     if (this.state.comment.length < MIN_COMMENT_LENGTH) {
-      redirectToPlacePage();
+      return redirectToPlacePage();
     }
 
     request

@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import { Route, Link } from 'react-router-dom'
+import distanceInWordsToNow from 'date-fns/distance_in_words_to_now'
+import * as koLocale from 'date-fns/locale/ko'
+import _ from 'lodash';
 import './Place.css';
+import Evaluation from './Evaluation';
+import Comment from './Comment';
+import request from '../../request';
 import config from '../../config';
 
 class Place extends Component {
@@ -19,18 +25,51 @@ class Place extends Component {
       wifi: '',
       seat: '',
       crowdedness: '',
-      coffee: ''
+      coffee: '',
+      comments: [],
+      evaluations: []
     };
+
+    this.fetchData = this.fetchData.bind(this);
   }
 
   componentDidMount() {
-    axios.get(`${config.serverUrl}/places/${this.props.match.params.placeId}`)
+    this.fetchData();
+  }
+
+  fetchData() {
+    request
+      .get(`/places/${this.props.match.params.placeId}`)
       .then(res => this.setState(() => res.data));
   }
 
-  render(match) {
+  render() {
+    const additionalDetails = _(this.state.evaluations)
+      .groupBy(v => v.environment.id)
+      .map((evalsByEnv) => {
+        const [ [ major, ] ] = _(evalsByEnv)
+          .groupBy(v => v.result)
+          .sortBy(v => -v.length)
+          .take(1)
+          .value();
+
+        return major;
+      })
+      .filter(v => v.result !== 'UNKNOWN')
+      .map((evaluation) => (
+        <li className="Place__Detail__Item">
+          <strong>{ evaluation.environment.name }</strong>
+          <span>{
+            (evaluation.result === 'POSITIVE')
+              ? evaluation.environment.positiveLabel
+              : evaluation.environment.negativeLabel
+          }</span>
+        </li>
+      ))
+      .value();
+
     return (
-      <main>
+      <main className="Place">
         <div
           className="Place__Cover"
           style={ { backgroundImage: this.state.image ? `url(${config.serverUrl + this.state.image})` : '' } }>
@@ -54,30 +93,58 @@ class Place extends Component {
             <strong>영업시간</strong>
             <span>{ this.state.opening } - { this.state.closing }</span>
           </li>
-          <li className="Place__Detail__Item">
-            <strong>콘센트</strong>
-            <span>{ this.state.plug }</span>
-          </li>
-          <li className="Place__Detail__Item">
-            <strong>WIFI</strong>
-            <span>{ this.state.wifi }</span>
-          </li>
-          <li className="Place__Detail__Item">
-            <strong>좌석</strong>
-            <span>{ this.state.seat }</span>
-          </li>
-          <li className="Place__Detail__Item">
-            <strong>혼잡도</strong>
-            <span>{ this.state.crowdedness }</span>
-          </li>
-          <li className="Place__Detail__Item">
-            <strong>커피 맛</strong>
-            <span>{ this.state.coffee }</span>
-          </li>
+          { additionalDetails }
         </ul>
+
+        <hr className="Place__Divider" />
+        <h4 className="Place__SubHeading">유저 댓글</h4>
+
+        { this.state.comments.length ? (
+          <ul className="Place__Comments">
+            { this.state.comments.map(commentToListItem) }
+          </ul>
+        ) : <p>유저 댓글이 없습니다.</p> }
+
+        <Link
+          to={ `${this.props.match.url}/evaluation` }
+          className="button Button--Primary Button--Circle FloatingButton" />
+
+        <Route path={ `${this.props.match.url}/evaluation` } render={(props) => (
+          <Evaluation
+            { ...props }
+            component={ Evaluation }
+            placeName={ this.state.name }
+            placeId={ this.state.id }
+            onCreate={ this.fetchData } />
+        )} />
+
+        <Route path={ `${this.props.match.url}/comment` } render={(props) => (
+          <Comment
+            { ...props }
+            component={ Comment }
+            placeName={ this.state.name }
+            placeId={ this.state.id }
+            onCreate={ this.fetchData } />
+        )} />
       </main>
     );
   }
+}
+
+function commentToListItem(comment) {
+  return (
+    <li className="Place__Comments__Item">
+      <strong>
+        { comment.user.name }
+        <time>
+          { distanceInWordsToNow(comment.updatedAt || comment.createdAt, { locale: koLocale, addSuffix: true }) }
+        </time>
+      </strong>
+      <span>
+        { comment.content }
+      </span>
+    </li>
+  );
 }
 
 export default Place;

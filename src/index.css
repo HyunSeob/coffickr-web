@@ -1,5 +1,6 @@
 @import './fonts/font.css';
 @import '../node_modules/open-color/open-color.css';
+@import './constants.css';
 
 body {
   margin: 0;
@@ -9,4 +10,78 @@ body {
 
 input {
   font-size: 100%;
+}
+
+.Section {
+  padding-top: var(--basicOffset);
+  padding-bottom: var(--basicOffset);
+}
+
+button {
+  font-size: 1.4rem;
+  font-weight: normal;
+  border-radius: 0.2rem;
+  padding: 0 2rem;
+  background: linear-gradient(to right, var(--oc-gray-9), var(--oc-gray-7));
+  border-color: var(--oc-gray-8);
+}
+
+.Button {
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+/**
+ * Button Colors
+ */
+.Button--Primary {
+  background: linear-gradient(to right, var(--oc-indigo-9), var(--oc-indigo-7));
+  border-color: var(--oc-indigo-8);
+}
+
+.Button--Default {
+  background: linear-gradient(to right, var(--oc-gray-9), var(--oc-gray-7));
+  border-color: var(--oc-gray-8);
+}
+
+.Button--Warning {
+  background: linear-gradient(to right, var(--oc-orange-9), var(--oc-orange-7));
+  border-color: var(--oc-orange-8);
+}
+
+.Button--Danger {
+  background: linear-gradient(to right, var(--oc-red-9), var(--oc-red-7));
+  border-color: var(--oc-red-8);
+}
+
+
+/**
+ * Button Sizings
+ */
+.Button--Tiny {
+
+}
+
+.Button--Small {
+
+}
+
+.Button--Normal {
+  font-size: 1.6rem;
+  height: 3.2rem;
+}
+
+.Button--Large {
+  font-size: 1.8rem;
+  height: 5.2rem;
+  line-height: 5.2rem;
+}
+
+.Button--Giant {
+  font-size: 2.2rem;
+}
+
+.Button--Circle {
+  border-radius: 50%;
 }

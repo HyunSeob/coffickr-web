@@ -1,0 +1,36 @@
+@import '../../../constants.css';
+
+.EvaluationDialog {
+  @apply --FixedFull;
+  background-color: #fff;
+  transition: transform 0.3s ease;
+}
+
+.EvaluationDialog--Hidden {
+  transform: translateX(100%);
+}
+
+.EvaluationDialog__Question {
+  width: 32rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.EvaluationDialog__Body {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 1rem;
+}
+
+.EvaluationDialog__ButtonList {
+  text-align: center;
+}
+
+.EvaluationDialog__ButtonList__Button {
+  width: 10rem;
+  &:not(:last-child) {
+    margin-right: 1rem;
+  }
+}

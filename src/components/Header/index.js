@@ -10,17 +10,24 @@ class Header extends Component {
           <span className="Navbar__Logo">Coffickr</span>
         </Link>
         <nav className="Navbar__Right">
-          <ul>
-            <li>
-              <Link to="/" className="Navbar__Link">홈</Link>
-            </li>
-            <li>
-              <Link to="/login" className="Navbar__Link">로그인</Link>
-            </li>
-            <li>
-              <Link to="/signup" className="Navbar__Link">회원가입</Link>
-            </li>
-          </ul>
+          {
+            (!!this.props.user) ? (
+              <ul>
+                <li>
+                  <button className="Navbar__Link" onClick={ this.props.onClickLogout }>로그아웃</button>
+                </li>
+              </ul>
+            ) : (
+              <ul>
+                <li>
+                  <Link to="/login" className="Navbar__Link">로그인</Link>
+                </li>
+                <li>
+                  <Link to="/signup" className="Navbar__Link">회원가입</Link>
+                </li>
+              </ul>
+            )
+          }
         </nav>
       </header>
     );

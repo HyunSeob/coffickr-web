@@ -13,7 +13,7 @@
 }
 
 .PlaceCard__Background {
-  @apply --FullSizing;
+  @apply --AbsoluteFull;
   background-color: var(--oc-gray-8);
   opacity: 0.5;
 }

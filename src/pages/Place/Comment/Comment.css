@@ -1,0 +1,31 @@
+@import '../../../constants.css';
+
+.CommentDialog {
+  @apply --FixedFull;
+  background-color: #fff;
+  transition: transform 0.3s ease;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.CommentDialog--Hidden {
+  transform: translateX(100%);
+}
+
+.CommentDialog__Header {}
+
+.CommentDialog__Body {
+  border: 0;
+  font-size: 2rem;
+  padding: 0;
+  flex: 1;
+}
+
+.CommentDialog__Button {
+  position: absolute;
+  width: 100%;
+  bottom: -1rem;
+  left: 0;
+  border-radius: 0;
+}

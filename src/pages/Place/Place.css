@@ -2,12 +2,13 @@
 @import '../../../node_modules/open-color/open-color.css';
 
 .Place {
-
+  padding: var(--basicOffset);
 }
 
 .Place__Cover {
   position: relative;
-  width: 100%;
+  width: calc(100% + var(--basicOffset) * 2);
+  margin: calc(-1 * var(--basicOffset));
   height: 360px;
   color: var(--oc-gray-1);
   background-size: cover;
@@ -28,7 +29,7 @@
 }
 
 .Place__Cover__Background {
-  @apply --FullSizing;
+  @apply --AbsoluteFull;
   background-color: var(--oc-gray-8);
   opacity: 0.5;
 }
@@ -44,7 +45,7 @@
 .Place__Detail {
   list-style: none;
   text-align: left;
-  margin: var(--basicOffset);
+  margin-top: calc(var(--basicOffset) * 2);
 }
 
 .Place__Detail__Item {
@@ -54,5 +55,53 @@
 
   & span {
     display: block;
+  }
+}
+
+.Place__Divider {
+  margin: var(--basicOffset) 0;
+  border-color: var(--oc-gray-4);
+}
+
+.Place__Comments {
+  list-style: none;
+}
+
+.Place__Comments__Item {
+ & strong {
+   display: block;
+   & time {
+     margin-left: 0.5rem;
+     font-size: 1.2rem;
+     font-weight: normal;
+     color: var(--oc-gray-6);
+   }
+ }
+}
+
+.FloatingButton {
+  position: fixed;
+  right: var(--basicOffset);
+  bottom: var(--basicOffset);
+  margin: 0;
+  padding: 0;
+  width: 54px;
+  height: 54px;
+  box-shadow: 1px 1px 10px 1px rgba(136,136,136,1);
+
+  &:before, &:after {
+    position: absolute;
+    background: var(--oc-gray-1);
+    content: '';
+    height: 1.5px;
+    width: 24px;
+    left: 50%;
+    margin-left: -12px;
+    margin-top: 24px;
+    border-radius: 2px;
+  }
+
+  &:after {
+    transform: rotate(90deg);
   }
 }

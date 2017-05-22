@@ -1,3 +1,3 @@
 module.exports = {
-  serverUrl: 'http://localhost:4000'
+  serverUrl: 'http://local.coffic.kr:4000'
 };

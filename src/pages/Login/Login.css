@@ -1,6 +1,0 @@
-@import '../../constants.css';
-
-.Section {
-  padding-top: var(--basicOffset);
-  padding-bottom: var(--basicOffset);
-}

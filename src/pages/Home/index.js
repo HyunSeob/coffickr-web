@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import PlaceCard from '../../components/PlaceCard';
 import config from '../../config';
+import request from '../../request';
 
 class Home extends Component {
   constructor(props) {
@@ -12,7 +12,7 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    axios.get(`${config.serverUrl}/places`)
+    request.get('/places')
       .then(res => this.setState(() => ({ places: res.data })));
   }
 

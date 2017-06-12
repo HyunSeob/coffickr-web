@@ -53,7 +53,6 @@ class Evaluation extends Component {
 
   render() {
     const question = this.state.questions[this.state.currentIndex];
-    console.log(this.props.history);
 
     return (
       <div className={ `EvaluationDialog${ this.state.hidden ? ' EvaluationDialog--Hidden' : '' }` }>

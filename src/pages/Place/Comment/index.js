@@ -55,7 +55,7 @@ class Comment extends Component {
         </h3>
         <textarea
           className="CommentDialog__Body"
-          placeholder="의견을 남겨주세요"
+          placeholder="10자 이상으로 의견을 남겨주세요."
           onChange={ this.handleChange } />
         <button
           className={ `Button Button--Large ${ enoughLength ? 'Button--Default' : 'Button--Primary' } CommentDialog__Button` }

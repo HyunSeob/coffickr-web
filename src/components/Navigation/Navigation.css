@@ -1,0 +1,29 @@
+@import '../../../node_modules/open-color/open-color.css';
+
+.Navigation {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 280px;
+  background-color: var(--oc-gray-9);
+  padding: 48px;
+  transition: transform 0.3s ease;
+
+  & ul {
+    list-style: none;
+  }
+}
+
+.Navigation--Hidden {
+  transform: translateX(100%);
+}
+
+.Navigation__Link {
+  font-weight: bold;
+  color: var(--oc-gray-1);
+  font-size: 20px;
+  background: none;
+  border: 0;
+  padding: 0;
+}

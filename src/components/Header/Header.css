@@ -23,13 +23,27 @@
 
 .Navbar__Left {
   float: left;
+  width: calc(100% - 46px);
 }
 
 .Navbar__Right {
   float: right;
 }
 
+.Navbar__Left, .Navbar__Right {
+  height: var(--navbarHeight);
+  & > * {
+    display: inline-block;
+  }
+}
+
+.Navbar__Button {
+  height: var(--navbarHeight);
+  line-height: var(--navbarHeight);
+}
+
 .Navbar__Link {
+  overflow: hidden;
   height: var(--navbarHeight);
   line-height: var(--navbarHeight);
   display: inline-block;
@@ -49,4 +63,24 @@
   font-size: 16px;
   padding: 2px 6px;
   border: 1px solid var(--oc-gray-1);
+}
+
+.SearchBox {
+  margin-left: 12px;
+  overflow: hidden;
+  width: calc(100% - 86px);
+  height: var(--navbarHeight);
+  padding-top: 14px;
+}
+
+.SearchBox__Icon {
+  transform: rotate(-45deg);
+}
+
+input.SearchBox__Input {
+  border: 0;
+  background: none;
+  color: var(--oc-gray-1);
+  width: calc(100% - 34px);
+  margin: 0;
 }

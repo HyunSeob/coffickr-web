@@ -15,7 +15,7 @@ class Place extends Component {
     this.state = {
       id: '',
       name: '',
-      image: '',
+      photoRef: '',
       score: 0,
       address: '',
       phone: '000-0000-0000',
@@ -72,7 +72,10 @@ class Place extends Component {
       <main className="Place">
         <div
           className="Place__Cover"
-          style={ { backgroundImage: this.state.image ? `url(${config.serverUrl + this.state.image})` : '' } }>
+          style={ { backgroundImage: this.state.photoRef
+            ? `url(${config.serverUrl}/places/${this.state.id}/photo)`
+            : `url(${config.serverUrl}/image/default.jpg)`
+          } }>
           <div className="Place__Cover__Background"></div>
           <div className="Place__Cover__Bottom">
             <h2 className="Place__Name">{ this.state.name }</h2>
@@ -85,14 +88,14 @@ class Place extends Component {
             <strong>주소</strong>
             <span>{ this.state.address }</span>
           </li>
-          <li className="Place__Detail__Item">
-            <strong>전화번호</strong>
-            <span>{ this.state.phone }</span>
-          </li>
-          <li className="Place__Detail__Item">
-            <strong>영업시간</strong>
-            <span>{ this.state.opening } - { this.state.closing }</span>
-          </li>
+          {
+            this.state.phone ? (
+              <li className="Place__Detail__Item">
+                <strong>전화번호</strong>
+                <span>{ this.state.phone }</span>
+              </li>
+            ) : ''
+          }
           { additionalDetails }
         </ul>
 

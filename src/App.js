@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 import Header from './components/Header';
-import Home from './pages/Home';
+import Navigation from './components/Navigation';
+import Dimmer from './components/Dimmer';
+import PlaceList from './pages/PlaceList';
 import Place from './pages/Place';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
@@ -12,11 +14,14 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: null
+      user: null,
+      navHidden: true
     };
 
     this.handleUserStatusChange = this.handleUserStatusChange.bind(this);
     this.requestLogout = this.requestLogout.bind(this);
+    this.openNavigation = this.openNavigation.bind(this);
+    this.closeNavigation = this.closeNavigation.bind(this);
   }
 
   componentWillMount() {
@@ -39,12 +44,26 @@ class App extends Component {
       });
   }
 
+  openNavigation() {
+    this.setState({ navHidden: false });
+  }
+
+  closeNavigation() {
+    this.setState({ navHidden: true });
+  }
+
   render() {
     return (
       <Router>
         <div className="App">
-          <Header user={ this.state.user } onClickLogout={ this.requestLogout } />
-          <Route exact path="/" component={ Home }/>
+          <Route path="/" render={(props) => (
+            <Header
+              { ...props }
+              onClickHamburger={ this.openNavigation }/>
+          )}/>
+
+          <Route exact path="/" component={ PlaceList }/>
+          <Route path="/search" component={ PlaceList }/>
           <Route path="/login" render={() => (
             this.state.user
               ? <Redirect to="/"/>
@@ -56,6 +75,14 @@ class App extends Component {
               : <Signup component={ Signup } onSignup={ this.handleUserStatusChange } />
           )} />
           <Route path="/places/:placeId" component={ Place }/>
+          <Dimmer
+            hidden={ this.state.navHidden }
+            onClickDimmer={ this.closeNavigation }/>
+          <Navigation
+            user={ this.state.user }
+            hidden={ this.state.navHidden }
+            onClickNavItem={ this.closeNavigation }
+            onClickLogout={ this.requestLogout }/>
         </div>
       </Router>
     );

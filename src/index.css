@@ -1,5 +1,6 @@
 @import './fonts/font.css';
 @import '../node_modules/open-color/open-color.css';
+@import '../node_modules/icono/dist/icono.min.css';
 @import './constants.css';
 
 body {
@@ -35,6 +36,11 @@ button {
 /**
  * Button Colors
  */
+.Button--Plain {
+  background: transparent;
+  border-color: transparent;
+}
+
 .Button--Primary {
   background: linear-gradient(to right, var(--oc-indigo-9), var(--oc-indigo-7));
   border-color: var(--oc-indigo-8);
@@ -84,4 +90,14 @@ button {
 
 .Button--Circle {
   border-radius: 50%;
+}
+
+.Button--Icon {
+  padding: 0.5rem;
+  margin: 0;
+  height: 5rem;
+
+  & > * {
+    float: left;
+  }
 }
